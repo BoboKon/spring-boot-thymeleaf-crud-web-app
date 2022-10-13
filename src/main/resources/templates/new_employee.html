@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container p-3 my-3 bg-dark text-white">
+    <h1>Systém na správu zamestnancov</h1>
+    <hr>
+    <h2>Nový zamestnanec</h2>
+
+    <form action="#" th:action="@{/saveEmployee}" th:object="${employee}"
+          method="POST">
+        <input type="text" th:field="*{academicDegree}"
+               placeholder="Titul" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{firstName}"
+               placeholder="Meno" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{lastName}"
+               placeholder="Priezvisko" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{postgraduateDegree}"
+               placeholder="Titul" class="form-control mb-4 col-4">
+        <select class="form-control mb-4 col-4" id="exampleSelect1" th:field="*{workplace.id}">
+            <option value="0">Pracovisko</option>
+            <option th:each="co:${workplaces}" th:value="${co.id}" th:text="${co.name}"></option>
+        </select>
+
+        <input type="text" th:field="*{workPosition}"
+               placeholder="Pracovná pozícia" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{age}"
+               placeholder="Vek" class="form-control mb-4 col-4">
+        Zamestnaný od:
+        <input type="date"  th:field="*{recruitment}"
+               placeholder="Zamestnaný od" class="form-control mb-4 col-4">
+
+        <input type="text" th:field="*{email}"
+               placeholder="Email" class="form-control mb-4 col-4">
+
+
+        <button type="submit" class="btn btn-info col-2">Ulož zamestnanca</button>
+    </form>
+
+    <hr>
+
+    <a class="text-danger" th:href = "@{/}"> Návrat na zoznam zamestnancov</a>
+</div>
+</body>
+</html>
